@@ -1,0 +1,44 @@
+<p>todo works!</p>
+<!-- {{todos}} -->
+<!-- <p *ngIf="todos.pending">Loading...</p> -->
+   <!--  <app-todos [todo]="todo"
+      *ngFor="let todo of todos.data">
+    </app-todos>
+    <p *ngIf="todos.error">{{todos.error}}</p> -->
+
+<div class="right" *ngIf="tutorials">
+<h3> Tutorial </h3>
+<ul *ngIf="showBool">
+	<li  *ngFor="let tutorial of tutorials | async; let i = index">
+		<a href="{{tutorial.url}}" target="_blank"> {{ tutorial.name }} </a>
+		<button (click)="delTutorial(i)">Delete</button>
+		<button (click)="Edit(i)">Edit</button>
+	 </li>
+	 <li>
+	 	<div *ngIf="editEnable">
+ <div  *ngFor="let tutorial of tutorials | async; let i = index"> 
+	<input type="number" placeholder="{{tutorial.id}}" value="{{tutorial.id}}" #id> 
+  <input type="text" placeholder="{{tutorial.name}}" value="{{tutorial.name}}" #name>
+  <input type="text" placeholder="{{tutorial.url}}" value="{{tutorial.url}}" #url>
+
+  <button (click)="Update(id.value, name.value, url.value)">Update</button>
+</div>
+</div></li>
+
+	 
+
+	<!--  <li (click)="delTutorial(i)" *ngFor="let tutorial of tutorials | async; let i = index"> </li> -->
+</ul>    
+
+<!-- <div *ngIf="editEnable">
+ <div *ngFor="let tutorial of tutorials | async; let i = index"> 
+	<input type="number" placeholder="{{tutorial.id}}" #id> 
+  <input type="text" placeholder="{{tutorial.name}}" #name>
+  <input type="text" placeholder="{{tutorial.url}}" #url>
+
+  <button (click)="Update(id.value, name.value, url.value)">Update</button>
+</div>
+</div> -->
+
+
+

@@ -4,13 +4,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodoComponent } from './todo/todo.component';
 import { TodosComponent } from './todos/todos.component';
-import { StoreModule } from '@ngrx/store';
+import { StoreModule, Action } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 // import { todos } from './todo.reducers';
 import { TodosService } from './todo.service';
 import { TodosEffects } from './todo.effects';
 import { tutreducer } from './todo.reducers';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     StoreModule.forRoot({
       tutorial: tutreducer

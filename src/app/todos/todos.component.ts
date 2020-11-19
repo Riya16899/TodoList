@@ -5,6 +5,7 @@ import { Tutorial } from './../models/tutorial.model'
 import * as TutorialActions from './../tutorial.actions';
 import { Observable } from 'rxjs';
 import { TodosEffects } from '../todo.effects';
+import { FormGroup, FormControl, Validators, FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-todos',
@@ -15,15 +16,25 @@ export class TodosComponent implements OnInit {
 
 	@Input() todo;
 
-  constructor(private store: Store<AppState>, private todosEffects : TodosEffects) { 
+	public addForm = this.formBuilder.group({
+	    id: new FormControl('', [Validators.required]),
+	    name : new FormControl('', [Validators.required]),
+	    url: new FormControl('', [Validators.required])
+	});
+
+
+  constructor(private store: Store<AppState>, private todosEffects : TodosEffects,
+  	private formBuilder: FormBuilder ) { 
 
   }
 
   ngOnInit() {
   }
 
-  addTutorial(id, name, url) {
-     this.store.dispatch(new TutorialActions.AddTutorial({id: id, name: name, url: url}) )
+  addTutorial() {
+  	console.log(this.addForm.value);
+    this.store.dispatch(new TutorialActions.AddTutorial({id: this.addForm.value.id, name: this.addForm.value.name, url: this.addForm.value.url}) )
+    this.addForm.reset();
   }
 
 

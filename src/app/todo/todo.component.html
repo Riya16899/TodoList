@@ -11,21 +11,27 @@
 <ul *ngIf="showBool">
 	<li  *ngFor="let tutorial of tutorials | async; let i = index">
 		<a href="{{tutorial.url}}" target="_blank"> {{ tutorial.name }} </a>
-		<button (click)="delTutorial(i)">Delete</button>
-		<button (click)="Edit(i)">Edit</button>
+		<form [formGroup]="updateForm" >
+		<div class="form-group">
+			<input type="number" formControlName="id" value="{{tutorial.id}}" > 
+	  		<input type="text" formControlName="name"  value="{{tutorial.name}}"  >
+	  		<input type="text" formControlName="url" value="{{tutorial.url}}" >
+		</div>
+		</form>
+  <button (click)="Update()">Update</button>
+  <button (click)="delTutorial(i)">Delete</button>
+		<!-- <button (click)="Edit(i)">Edit</button> -->
 	 </li>
-	 <li>
+	 <!-- <li>
 	 	<div *ngIf="editEnable">
- <div  *ngFor="let tutorial of tutorials | async; let i = index"> 
-	<input type="number" placeholder="{{tutorial.id}}" value="{{tutorial.id}}" #id> 
-  <input type="text" placeholder="{{tutorial.name}}" value="{{tutorial.name}}" #name>
-  <input type="text" placeholder="{{tutorial.url}}" value="{{tutorial.url}}" #url>
+ <div > 
+	<input type="number"  #id> 
+  <input type="text" #name>
+  <input type="text"  #url>
 
   <button (click)="Update(id.value, name.value, url.value)">Update</button>
 </div>
-</div></li>
-
-	 
+</div></li> -->
 
 	<!--  <li (click)="delTutorial(i)" *ngFor="let tutorial of tutorials | async; let i = index"> </li> -->
 </ul>    

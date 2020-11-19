@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Action } from '@ngrx/store';
+// import { Action } from '@ngrx/store';
 import { Tutorial } from './models/tutorial.model';
-
+import { createAction, Action } from '@ngrx/store';
 
 export const ADD_TUTORIAL = '[TUTORIAL] Add';
 export const REMOVE_TUTORIAL = '[TUTORIAL] Remove';
 export const TRY = '[TUTORIAL] Try';
 export const GET_TUTORIAL = '[TUTORIAL] Get';
+
+
 
 export class AddTutorial implements Action {
 	readonly type = ADD_TUTORIAL
@@ -33,7 +35,7 @@ export class TryTutorial implements Action {
 export class GetTutorial implements Action {
 	readonly type = GET_TUTORIAL;
 
-	constructor(public payload: number) {
+	constructor(public payload: any) {
 	
 	}
 };

@@ -15,11 +15,12 @@ let initialState: Tutorial = {
   id: 1, 
   name: 'Initial ',
   url:'http://gg/com'
-
 }
+
 export function tutreducer(state: Tutorial[] = [initialState], action: TutorialActions.Action) {
   
   todoService: TodosService;
+   let index, list;
 
   switch(action.type) {
 
@@ -29,46 +30,18 @@ export function tutreducer(state: Tutorial[] = [initialState], action: TutorialA
 
     case TutorialActions.REMOVE_TUTORIAL:
        const delArray = [...state];
+       console.log(delArray, state);
        delArray.splice(action.payload, 1);
-       console.log(typeof delArray);
+
        return delArray;
 
     case TutorialActions.TRY:
-
-      state.find(item => {
-        if(item.id == action.payload.id) {
-
-          const entity: Tutorial[] = [{id: action.payload.id, name: action.payload.name, url: action.payload.url} ];// action.payload // {id: 3}
-          const updatedEntities: Tutorial[] = {...state, ...entity};
-          console.log(state.find(item => item.id == updatedEntities[0].id).name);
-
-          console.log({...updatedEntities});
-          return {...state, ...updatedEntities};
-
-           // const user = action.payload.name;
-           //  const entity = {name: user};
-           //  const updatedEntities = {...state[0], ...entity};
-           //  // console.log(user, entity, updatedEntities);
-           //  console.log([updatedEntities]);
-           //  return {...state, ...updatedEntities};
-        }
-        else {
-          return state;
-        }
-      });
-
-     case TutorialActions.GET_TUTORIAL:
-       let id: number = (action.payload);
-       console.log(action.payload, state[id]);
-       return state; 
-
-      // let myList = [{id:'aaa1', name: 'aaa'}, {id:'bbb2', name: 'bbb'}, {id:'ccc3', name: 'ccc'}];
-      // let itemUpdated = {id: 1, name: 'riya', url: 'riya.com'};
-      // updateState.find(item => item.id == itemUpdated.id).name = 'new namee';
-      // let updateState = [...state];
-      
-      // console.log(action.payload);
-      // return updateState; 
+      const index = state.findIndex(item => item.id == action.payload.id);
+      list = [...state];
+      list[index] = action.payload;
+      console.log(list[index], action.payload);
+      console.log(Object.assign({}, state, { list }));
+      return list;
        
     default:
       return [...state];  

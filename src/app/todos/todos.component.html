@@ -3,12 +3,14 @@
 
 
 <div class="left">
-  <input type="number" placeholder="id" #id>
-  <input type="text" placeholder="name" #name>
-  <input type="text" placeholder="url" #url>
-
-  <button (click)="addTutorial(id.value, name.value,url.value)">Add a Tutorial</button>
-
+	<form [formGroup]="addForm" >
+		<div class="form-group">
+		  <input type="number" formControlName="id" placeholder="id" >
+		  <input type="text" formControlName="name" placeholder="name" >
+		  <input type="text" formControlName="url" placeholder="url" >
+		</div>
+  <button (click)="addTutorial()">Add a Tutorial</button>
+</form>
 
 </div>
 
